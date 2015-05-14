@@ -5,6 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm)
 [![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-php-fpm.svg)](https://gemnasium.com/sensu-plugins/sensu-plugins-php-fpm)
+[ ![Codeship Status for sensu-plugins/sensu-plugins-php-fpm](https://codeship.com/projects/427ed6d0-dc04-0132-8e5a-1e3fe125131b/status?branch=master)](https://codeship.com/projects/79856)
 
 ## Functionality
 
