@@ -15,41 +15,26 @@
 
 ## Usage
 
+This check use a nginx config in default vhost like :
+
+```
+set $pool "www-data";
+if ($arg_pool) {
+  set $pool $arg_pool;
+}
+location ~ "/fpm-(status|ping)" {
+  include       /etc/nginx/fastcgi_params;
+  fastcgi_pass  unix:/var/run/php-$pool.sock;
+  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+  access_log off;
+  allow 127.0.0.1;
+  deny all;
+}
+```
+
 ## Installation
 
-Add the public key (if you haven’t already) as a trusted certificate
+[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
 
-```
-gem cert --add <(curl -Ls https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem)
-gem install sensu-plugins-php-fpm -P MediumSecurity
-```
-
-You can also download the key from /certs/ within each repository.
-
-#### Rubygems
-
-`gem install sensu-plugins-php-fpm`
-
-#### Bundler
-
-Add *sensu-plugins-disk-checks* to your Gemfile and run `bundle install` or `bundle update`
-
-#### Chef
-
-Using the Sensu **sensu_gem** LWRP
-```
-sensu_gem 'sensu-plugins-php-fpm' do
-  options('--prerelease')
-  version '0.0.1'
-end
-```
-
-Using the Chef **gem_package** resource
-```
-gem_package 'sensu-plugins-php-fpm' do
-  options('--prerelease')
-  version '0.0.1'
-end
-```
 
 ## Notes
