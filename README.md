@@ -10,8 +10,8 @@
 ## Functionality
 
 ## Files
- * bin/check-php-fpm
- * bin/metrics-php-fpm
+ * bin/check-php-fpm.rb
+ * bin/metrics-php-fpm.rb
 
 ## Usage
 
@@ -35,6 +35,5 @@ location ~ "/fpm-(status|ping)" {
 ## Installation
 
 [Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
-
 
 ## Notes
