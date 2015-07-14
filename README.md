@@ -1,6 +1,6 @@
 ## Sensu-Plugins-php-fpm
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-php-fpm.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-php-fpm)
+[ ![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-php-fpm.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-php-fpm)
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-php-fpm.svg)](http://badge.fury.io/rb/sensu-plugins-php-fpm)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-php-fpm)
