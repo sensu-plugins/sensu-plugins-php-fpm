@@ -18,6 +18,7 @@
 
 require 'sensu-plugin/check/cli'
 require 'net/http'
+require 'net/https'
 require 'uri'
 require 'socket'
 
@@ -58,6 +59,21 @@ class CheckPHPFpm < Sensu::Plugin::Check::CLI
          long: '--response RESPONSE',
          default: 'pong'
 
+  option :ssl,
+         description: 'Enabling SSL connections',
+         short: '-l',
+         long: '--ssl',
+         boolean: true,
+         description: 'Enabling SSL connections',
+         default: false
+
+  option :insecure,
+         short: '-k',
+         long: '--insecure',
+         boolean: true,
+         description: 'Enabling insecure connections',
+         default: false
+
   def run
     config[:url] = config[:scheme] + config[:hostname].to_s + ':' + config[:port].to_s + '/' + config[:path].to_s + config[:pool].to_s
     config[:fqdn] = Socket.gethostname
@@ -65,6 +81,12 @@ class CheckPHPFpm < Sensu::Plugin::Check::CLI
 
     request = Net::HTTP::Get.new(uri.request_uri)
     http = Net::HTTP.new(uri.host, uri.port)
+
+    if config[:ssl]
+      http.use_ssl = true
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE if config[:insecure]
+    end
+
     response = http.request(request)
 
     if response.code == '200'
