@@ -13,6 +13,16 @@
 # sensu-plugin Ruby gem
 # php-fpm ping configuration
 #
+# USAGE:
+#   ./check-php-fpm.rb --host ${hostname}
+#
+# For hosts with a CA-signed SSL certificate
+#   ./check-php-fpm.rb --host ${hostname} --port 443 --ssl
+#
+# For hosts with a self-signed SSL certificate
+#   ./check-php-fpm.rb --host ${hostname} --port 443 --ssl --insecure
+#
+#
 # Released under the same terms as Sensu (the MIT license); see LICENSE
 # for details.
 
