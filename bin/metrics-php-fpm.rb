@@ -37,7 +37,7 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
     found = false
     attempts = 0
     # #YELLOW
-    until found || attempts >= 10 # rubocop:disable Style/Next
+    until found || attempts >= 10
       attempts += 1
       if config[:url]
         uri = URI.parse(config[:url])
