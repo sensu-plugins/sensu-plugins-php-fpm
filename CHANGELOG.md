@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+## [0.0.4] - 2015-09-21
+### Added
+- ability to make insecure https connections
+
 ## [0.0.3] - 2015-07-14
 ### Changed
 - updated sensu-plugin gem to 1.2.0
@@ -22,3 +26,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
+[unreleased]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.4...HEAD
+[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.2...0.0.3
+[0.0.2]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.1...0.0.2
