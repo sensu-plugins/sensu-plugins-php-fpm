@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+## [0.0.5] - 2016-01-06
+### Fixed
+- remove duplicate option description in check-php-fpm
+
 ## [0.0.4] - 2015-09-21
 ### Added
 - ability to make insecure https connections
