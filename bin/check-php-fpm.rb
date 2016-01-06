@@ -70,7 +70,6 @@ class CheckPHPFpm < Sensu::Plugin::Check::CLI
          default: 'pong'
 
   option :ssl,
-         description: 'Enabling SSL connections',
          short: '-l',
          long: '--ssl',
          boolean: true,
