@@ -46,7 +46,7 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         end
-        request = Net::HTTP::Get.new(uri.request_uri + '?xml', 'User-Agent' => "#{config[:agent]}")
+        request = Net::HTTP::Get.new(uri.request_uri + '?xml', 'User-Agent' => config[:agent].to_s)
         response = http.request(request)
         if response.code == '200'
           found = true

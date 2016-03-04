@@ -16,13 +16,15 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake default
+- gem build sensu-plugins-php-fpm.gemspec
+- gem install sensu-plugins-php-fpm-*.gem
 deploy:
   provider: rubygems
   api_key:
-    secure: a8kbhCxKzyW31WHceMG9+EFmERFUpPvs7TTdk5OS4QHZCJT2nScW7QOGUMF88Mm+qVTFS1c56wlLrxRtTGR7QTKWABxesiEDrSFou7qTuj19FP79bxVwliYlV9a2hXj1ebXrrEVUekrwIPuspKhe4ExOMOIhZHnqhaVYtvZm1x0=
+    secure: K6x8cl/UqBU2XkuH71Y+NB3hDFVrUyQ+L+9Bu4AHjTxBOHo/r4IxEj6uccmbdvIytTop6e3J59BMTThGUSKS22grdouXH/0OTZDhWwV2SIs/BKgXpTH/xZJIlB2z0PCFCvEwcW7D/07asIScUYLmuZEHiyZ5t7xpc3h704C7on4=
   gem: sensu-plugins-php-fpm
   on:
-    tags: true
+    ags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0
