@@ -24,7 +24,7 @@ deploy:
     secure: K6x8cl/UqBU2XkuH71Y+NB3hDFVrUyQ+L+9Bu4AHjTxBOHo/r4IxEj6uccmbdvIytTop6e3J59BMTThGUSKS22grdouXH/0OTZDhWwV2SIs/BKgXpTH/xZJIlB2z0PCFCvEwcW7D/07asIScUYLmuZEHiyZ5t7xpc3h704C7on4=
   gem: sensu-plugins-php-fpm
   on:
-    ags: true
+    tags: true
     all_branches: true
     rvm: 1.9.3
     rvm: 2.0
