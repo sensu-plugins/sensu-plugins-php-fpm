@@ -33,12 +33,6 @@ require 'uri'
 require 'socket'
 
 class CheckPHPFpm < Sensu::Plugin::Check::CLI
-  option :pool,
-         short: '-p POOL',
-         long: '--pool POOL',
-         description: 'Full POOL name to fpm ping page, example: https://yoursite.com/fpm-ping?pool=POOL',
-         default: 'www-data'
-
   option :hostname,
          short: '-h HOSTNAME',
          long: '--host HOSTNAME',
@@ -46,25 +40,30 @@ class CheckPHPFpm < Sensu::Plugin::Check::CLI
          default: 'localhost'
 
   option :port,
-         short: '-P PORT',
+         short: '-p PORT',
          long: '--port PORT',
          description: 'Nginx  port',
          default: '80'
 
   option :path,
          short: '-q PATH',
-         long: '--statspath PATH',
+         long: '--path PATH',
          description: 'Path to your fpm ping',
-         default: 'fpm-ping?pool='
+         default: 'fpm-ping'
+
+ option :pool,
+        short: '-P ?pool=POOL',
+        long: '--pool ?pool=POOL',
+        description: 'Name of your pool, if you are dynamically mapping pools based on args in Nginx'
 
   option :scheme,
-         description: 'Metric naming scheme, text to prepend to metric',
+         description: 'Request scheme to use',
          short: '-s SCHEME',
          long: '--scheme SCHEME',
          default: 'http://'
 
   option :response,
-         description: 'Reponse of ping',
+         description: 'Expected response',
          short: '-r RESPONSE',
          long: '--response RESPONSE',
          default: 'pong'
@@ -84,7 +83,11 @@ class CheckPHPFpm < Sensu::Plugin::Check::CLI
          default: false
 
   def run
-    config[:url] = config[:scheme] + config[:hostname].to_s + ':' + config[:port].to_s + '/' + config[:path].to_s + config[:pool].to_s
+    if config[:pool]
+      config[:path] = config[:path] + config[:pool]
+    end
+
+    config[:url] = config[:scheme] + config[:hostname].to_s + ':' + config[:port].to_s + '/' + config[:path].to_s
     config[:fqdn] = Socket.gethostname
     uri = URI.parse(config[:url])
 
