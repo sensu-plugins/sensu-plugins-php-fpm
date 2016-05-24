@@ -51,10 +51,10 @@ class CheckPHPFpm < Sensu::Plugin::Check::CLI
          description: 'Path to your fpm ping',
          default: 'fpm-ping'
 
- option :pool,
-        short: '-P ?pool=POOL',
-        long: '--pool ?pool=POOL',
-        description: 'Name of your pool, if you are dynamically mapping pools based on args in Nginx'
+  option :pool,
+         short: '-P ?pool=POOL',
+         long: '--pool ?pool=POOL',
+         description: 'Name of your pool, if you are dynamically mapping pools based on args in Nginx'
 
   option :scheme,
          description: 'Request scheme to use',
