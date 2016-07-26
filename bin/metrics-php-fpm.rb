@@ -27,6 +27,12 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: "#{Socket.gethostname}.php_fpm"
 
+  option :scheme_append,
+         description: 'append information on the default schema (hostname)',
+         short: '-S addition',
+         long: '--scheme_append',
+         default: nil
+
   option :agent,
          description: 'User Agent to make the request with',
          short: '-a USERAGENT',
@@ -69,7 +75,12 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
               max_children_reached
               slow_requests)
     stat.each do |name|
-      output "#{config[:scheme]}.#{name}", stats['status'][name]
+    stat.each do |name|
+      if config[:scheme_append]
+        output "#{config[:scheme]}.#{config[:scheme_append]}.#{name}", stats['status'][name]
+      else
+        output "#{config[:scheme]}.#{name}", stats['status'][name]
+      end
     end
     ok
   end
