@@ -3,7 +3,7 @@
 # Pull php-fpm metrics from php-fpm status page
 # ===
 #
-# Requires `crack` gem to parse xml.
+# Requires `json` gem to parse json.
 #
 # Copyright 2014 Ilari Makela ilari at i28.fi
 #
@@ -13,7 +13,7 @@
 require 'sensu-plugin/metric/cli'
 require 'net/https'
 require 'uri'
-require 'crack'
+require 'json'
 
 class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :url,
@@ -37,7 +37,7 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
     found = false
     attempts = 0
     # #YELLOW
-    until found || attempts >= 10
+    until found || attempts >= 10 # rubocop:disable Style/Next
       attempts += 1
       if config[:url]
         uri = URI.parse(config[:url])
@@ -46,7 +46,7 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
           http.use_ssl = true
           http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         end
-        request = Net::HTTP::Get.new(uri.request_uri + '?xml', 'User-Agent' => config[:agent].to_s)
+        request = Net::HTTP::Get.new(uri.request_uri + '?json&full', 'User-Agent' => "#{config[:agent]}")
         response = http.request(request)
         if response.code == '200'
           found = true
@@ -56,7 +56,8 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
       end
     end # until
 
-    stats = Crack::XML.parse(response.body)
+    stats = JSON.parse(response.body)
+    # overall stats
     stat = %w(start_since
               accepted_conn
               listen_queue
@@ -69,7 +70,37 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
               max_children_reached
               slow_requests)
     stat.each do |name|
-      output "#{config[:scheme]}.#{name}", stats['status'][name]
+      output "#{config[:scheme]}.#{name}", stats[name.gsub(/_/,' ')]
+    end
+    # get the maxes for the processes
+    proc_stat = %w(request_duration
+              last_request_cpu
+              last_request_memory)
+    proc_stat.each do |name|
+      stat_name = name.gsub(/_/,' ')
+      max = 0
+      min = -1
+      total = 0
+      count = 0
+      stats['processes'].each do |proc|
+        next unless proc['state'] == 'Idle'
+        stat_value = proc[stat_name].to_f
+        if max < stat_value
+          max = proc[stat_name]
+        end
+        if min == -1 or min > stat_value
+          min = proc[stat_name]
+        end
+        total += stat_value
+        count += 1
+      end
+      output "#{config[:scheme]}.processes.#{name}.max", max
+      output "#{config[:scheme]}.processes.#{name}.min", min
+      if count == 0
+        output "#{config[:scheme]}.processes.#{name}.avg", 0
+      else
+        output "#{config[:scheme]}.processes.#{name}.avg", total/count
+      end
     end
     ok
   end
