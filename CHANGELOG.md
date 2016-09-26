@@ -5,7 +5,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
-## [0.1.0] - 2016-09-06
+## [0.1.0] - 2016-09-25
 ### Added
 - check-php-fpm.rb: added --pool option for mapping pools based on args in Nginx
 
