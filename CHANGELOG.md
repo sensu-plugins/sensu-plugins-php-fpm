@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+### Changed
+- Removed Crack as a dependency of the metric script
+
 ## [0.1.0] - 2016-09-25
 ### Added
 - check-php-fpm.rb: added --pool option for mapping pools based on args in Nginx
