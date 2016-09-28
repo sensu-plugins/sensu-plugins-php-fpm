@@ -65,8 +65,8 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
               max_children_reached
               slow_requests)
     response.body.each_line do |line|
-      k, v = line.split(":").map(&:strip)
-      k.gsub! " ", "_"
+      k, v = line.split(':').map(&:strip)
+      k.tr! ' ', '_'
       output "#{config[:scheme]}.#{k}", v if stat.include? k
     end
     ok
