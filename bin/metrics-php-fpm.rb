@@ -16,7 +16,8 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :url,
          short: '-u URL',
          long: '--url URL',
-         description: 'Full URL to php-fpm status page, example: http://yoursite.com/php-fpm-status'
+         description: 'Full URL to php-fpm status page, example: http://yoursite.com/php-fpm-status',
+         required: true
 
   option :scheme,
          description: 'Metric naming scheme, text to prepend to metric',
@@ -36,8 +37,9 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
     # #YELLOW
     until found || attempts >= 10
       attempts += 1
-      if config[:url]
-        uri = URI.parse(config[:url])
+      url = config[:url]
+      if url
+        uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.scheme == 'https'
           http.use_ssl = true
@@ -48,10 +50,12 @@ class PhpfpmMetrics < Sensu::Plugin::Metric::CLI::Graphite
         if response.code == '200'
           found = true
         elsif !response.header['location'].nil?
-          config[:url] = response.header['location']
+          url = response.header['location']
         end
       end
     end # until
+
+    critical "Unable to load url #{config[:url]}" if response.nil? || response.code != '200'
 
     stat = %w(start_since
               accepted_conn
