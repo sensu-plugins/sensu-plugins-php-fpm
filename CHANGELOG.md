@@ -7,6 +7,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ### Changed
 - Removed Crack as a dependency of the metric script
+- Better feedback for missing/invalid URL in the metric script
 
 ## [0.1.0] - 2016-09-25
 ### Added
