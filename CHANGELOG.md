@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+## [1.0.1] 2017-07-14
+### No-op
+- no real change (deployment issues)
+
 ## [1.0.0] 2017-07-14
 ### Added
 - ruby 2.3, 2.4 testing
@@ -47,7 +51,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.5...0.1.0
 [0.0.5]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.4...0.0.5
