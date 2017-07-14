@@ -5,6 +5,13 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 
+## [1.0.0] 2017-07-14
+### Added
+- ruby 2.3, 2.4 testing
+
+### Breaking Changes
+- removed < 2.0 ruby support
+
 ### Changed
 - Removed Crack as a dependency of the metric script
 - Better feedback for missing/invalid URL in the metric script
@@ -40,7 +47,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.1.0...1.0.0
 [0.1.0]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.5...0.1.0
 [0.0.5]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.4...0.0.5
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-php-fpm/compare/0.0.3...0.0.4
